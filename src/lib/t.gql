@@ -1,0 +1,13 @@
+query getLessons($where: LessonWhereInput) {
+  items: lessons(where: $where) {
+    id
+    title
+    slug
+    teacher {
+      avatarURL
+      bio
+      id
+      name
+    }
+  }
+}

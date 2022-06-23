@@ -9,4 +9,5 @@ generated
 *.otf
 *.graphql
 *.gql
+*.css
 pre-commit.js

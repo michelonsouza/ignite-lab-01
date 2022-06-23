@@ -1,0 +1,20 @@
+overwrite: true
+schema:
+  - "https://api-sa-east-1.graphcms.com/v2/cl4ljcdt56mom01yrdswgf7n9/master"
+documents: "src/**/*.gql"
+hooks:
+  afterAllFileWrite:
+    - eslint --fix
+generates:
+  src/generated/index.ts:
+    plugins:
+      - add:
+          content: '/* eslint-disable @typescript-eslint/explicit-module-boundary-types */'
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      withHooks: true
+  ./graphql.schema.json:
+    plugins:
+      - 'introspection'

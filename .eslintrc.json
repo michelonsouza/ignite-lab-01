@@ -68,7 +68,8 @@
           "**/*.spec.ts",
           "**/*.spec.tsx",
           "**/mocks/*",
-          "src/setupTests.ts"
+          "src/setupTests.ts",
+          "vite.config.ts"
         ],
         "bundledDependencies": [
           "**/*.test.js",
@@ -78,7 +79,8 @@
           "**/*.spec.ts",
           "**/*.spec.tsx",
           "**/mocks/*",
-          "src/setupTests.ts"
+          "src/setupTests.ts",
+          "vite.config.ts"
         ],
         "peerDependencies": [
           "**/*.test.js",
@@ -88,7 +90,8 @@
           "**/*.spec.ts",
           "**/*.spec.tsx",
           "**/mocks/*",
-          "src/setupTests.ts"
+          "src/setupTests.ts",
+          "vite.config.ts"
         ],
         "optionalDependencies": [
           "**/*.test.js",
@@ -98,7 +101,8 @@
           "**/*.spec.ts",
           "**/*.spec.tsx",
           "**/mocks/*",
-          "src/setupTests.ts"
+          "src/setupTests.ts",
+          "vite.config.ts"
         ]
       }
     ],

@@ -1,3 +1,9 @@
+import { useGetLessonsQuery } from '@/generated';
+
 export function Teste(): JSX.Element {
-  return <h1>Teste</h1>;
+  const { data } = useGetLessonsQuery();
+
+  console.info({ data });
+
+  return <h1 className="text-5xl">Teste</h1>;
 }
