@@ -1,14 +1,7 @@
-import { ApolloProvider } from '@apollo/client';
-
-import { Teste } from './components';
-import { client } from './lib';
+import { Event } from './pages';
 
 function App(): JSX.Element {
-  return (
-    <ApolloProvider client={client}>
-      <Teste />
-    </ApolloProvider>
-  );
+  return <Event />;
 }
 
 export default App;

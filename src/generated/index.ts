@@ -1249,7 +1249,7 @@ export type Lesson = Node & {
   /** User that last published this document */
   publishedBy?: Maybe<User>;
   scheduledIn: Array<ScheduledOperation>;
-  slug?: Maybe<Scalars['String']>;
+  slug: Scalars['String'];
   /** System stage field */
   stage: Stage;
   teacher?: Maybe<Teacher>;
@@ -1335,7 +1335,7 @@ export type LessonCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   description?: InputMaybe<Scalars['String']>;
   lessonType: LessonType;
-  slug?: InputMaybe<Scalars['String']>;
+  slug: Scalars['String'];
   teacher?: InputMaybe<TeacherCreateOneInlineInput>;
   title: Scalars['String'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
@@ -5574,54 +5574,47 @@ export enum _SystemDateTimeFieldVariation {
   Localization = 'localization'
 }
 
-export type GetLessonsQueryVariables = Exact<{
-  where?: InputMaybe<LessonWhereInput>;
-}>;
+export type GetAllLessonsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetLessonsQuery = { __typename?: 'Query', items: Array<{ __typename?: 'Lesson', id: string, title: string, slug?: string | null, teacher?: { __typename?: 'Teacher', avatarURL: string, bio: string, id: string, name: string } | null }> };
+export type GetAllLessonsQuery = { __typename?: 'Query', items: Array<{ __typename?: 'Lesson', id: string, lessonType: LessonType, availableAt?: any | null, title: string, slug: string }> };
 
 
-export const GetLessonsDocument = gql`
-    query getLessons($where: LessonWhereInput) {
-  items: lessons(where: $where) {
+export const GetAllLessonsDocument = gql`
+    query getAllLessons {
+  items: lessons(orderBy: availableAt_ASC, stage: PUBLISHED) {
     id
+    lessonType
+    availableAt
     title
     slug
-    teacher {
-      avatarURL
-      bio
-      id
-      name
-    }
   }
 }
     `;
 
 /**
- * __useGetLessonsQuery__
+ * __useGetAllLessonsQuery__
  *
- * To run a query within a React component, call `useGetLessonsQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetLessonsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetAllLessonsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllLessonsQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetLessonsQuery({
+ * const { data, loading, error } = useGetAllLessonsQuery({
  *   variables: {
- *      where: // value for 'where'
  *   },
  * });
  */
-export function useGetLessonsQuery(baseOptions?: Apollo.QueryHookOptions<GetLessonsQuery, GetLessonsQueryVariables>) {
+export function useGetAllLessonsQuery(baseOptions?: Apollo.QueryHookOptions<GetAllLessonsQuery, GetAllLessonsQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetLessonsQuery, GetLessonsQueryVariables>(GetLessonsDocument, options);
+        return Apollo.useQuery<GetAllLessonsQuery, GetAllLessonsQueryVariables>(GetAllLessonsDocument, options);
       }
-export function useGetLessonsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetLessonsQuery, GetLessonsQueryVariables>) {
+export function useGetAllLessonsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllLessonsQuery, GetAllLessonsQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetLessonsQuery, GetLessonsQueryVariables>(GetLessonsDocument, options);
+          return Apollo.useLazyQuery<GetAllLessonsQuery, GetAllLessonsQueryVariables>(GetAllLessonsDocument, options);
         }
-export type GetLessonsQueryHookResult = ReturnType<typeof useGetLessonsQuery>;
-export type GetLessonsLazyQueryHookResult = ReturnType<typeof useGetLessonsLazyQuery>;
-export type GetLessonsQueryResult = Apollo.QueryResult<GetLessonsQuery, GetLessonsQueryVariables>;
+export type GetAllLessonsQueryHookResult = ReturnType<typeof useGetAllLessonsQuery>;
+export type GetAllLessonsLazyQueryHookResult = ReturnType<typeof useGetAllLessonsLazyQuery>;
+export type GetAllLessonsQueryResult = Apollo.QueryResult<GetAllLessonsQuery, GetAllLessonsQueryVariables>;
